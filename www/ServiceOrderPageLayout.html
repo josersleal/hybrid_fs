@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<link rel="stylesheet" href="css/TabsStyle.css" />
+		<script>
+			$(document).ready(
+				function() {
+
+					function showActive() {
+						try {
+							var divId = $("#service-order-subnav .active").attr("for");
+							var pageUrl = $("#service-order-subnav .active").attr("pageUrl");
+							$(".tabcontent").hide();
+							$("#" + divId).show();
+							changeNavigationTab(pageUrl);
+						}
+						catch(err){
+							alert("ServiceOrderPageLayout.html method showActive threw an error: " + err.message);
+						}
+					}
+
+					$("#service-order-subnav .sub-navigation-tab").click(
+						function() {
+							$("#service-order-subnav .sub-navigation-tab").removeClass("active");
+							$(this).addClass("active");
+							showActive();
+						});
+
+					showActive();
+
+				});
+		</script>
+	</head>
+	<body>
+		<div data-role="content">
+			<div>
+				<table id="service-order-subnav"
+					class="sub-navigation-bar detail-tabs" border="0" cellpadding="0"
+					cellspacing="0">
+					<tr>
+						<td class="sub-navigation-tab active" for="service-order-detail-tab-panel"
+							pageUrl="Details.html">
+							<p class="no-margin no-padding">Details</p>
+						</td>
+						<td class="sub-navigation-tab" for="operations-panel"
+							pageUrl="Operations.html">
+							<p class="no-margin no-padding">Operations</p>
+						</td>
+						<td class="sub-navigation-tab"
+							for="service-order-working-hours-panel"
+							pageUrl="WorkingHours.html">
+							<p class="no-margin no-padding">Working Hours</p>
+						</td>
+					</tr>
+				</table>
+				<div class="tabcontent" id="operations-panel"></div>
+				<div class="tabcontent working-hours-list" id="service-order-working-hours-panel">
+					<div id="hrs-list"></div>
+				</div>
+				<div class="tabcontent" id="service-order-detail-tab-panel"></div>
+				<div id="service-order-tab-info-panel" class="main-content-panel visible"></div>
+			</div>
+		</div>
+	</body>
+</html>

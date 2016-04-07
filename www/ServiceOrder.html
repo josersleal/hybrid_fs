@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Service Order</title>
+</head>
+<body>
+	<div data-role="page" data-theme="a" id="detail-page">
+		<div id="so-side-menu" class="wartsila-side-menu swipeon" data-role="panel"
+			data-position="left" data-display="overlay" data-theme="a">
+			<a href="index.html" class="icon back">Service Orders</a><p>
+			<a href="#" onclick="changeSideNavigation('div-serviceorder')">Service Order</a>
+			<a href="#" onclick="changeSideNavigation('div-chatt')">Chat</a>
+			<a href="#" onclick="changeSideNavigation('div-site')">Site</a>
+			<a href="#" onclick="changeSideNavigation('div-spareparts')">Spare Parts</a>
+			<a href="#" onclick="changeSideNavigation('div-documents')">Documents</a>
+			<a href="#" onclick="changeSideNavigation('div-riskassessment')">Safety</a></p>
+			<a href="index.html" onclick="setTimeout(function(){SmartSyncManager.startPushSfdcData();}, 500);" 
+				class="icon next-tool">Synchronize</a><br/>
+			<a href="#" onclick="DataManager.LogOut()" class="icon logout">Logout</a>
+		</div>
+		<div class="header-container swipeon" data-role="header" data-position="fixed">
+			<table border="0" cellspacing="0" cellpadding="0"><!-- TODO: Replace border/cellpadding/cellspacing with CSS -->
+				<tr>
+					<td class="side-menu">
+						<a href="#so-side-menu">
+							<img class="navmenu-icon" src="images/menu-17.png" alt="Menu">
+						</a>
+					</td>
+					<td>
+						<p id="service_order_tag_userName"
+							class="user-name no-padding no-margin"></p>
+						<p id="service_order_tag_desc"
+							class="service-order-tag-desc no-padding no-margin"></p>
+					</td>
+					<td class="logo">
+						<div class="header-logo-container">
+							<small id="p_tag_appVersion2" style="vertical-align: bottom;"></small>
+							<img src="images/wartsila_logo.png" alt="Wartsila" />
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="main-content-container swipeon" data-role="main">
+			<div data-role="content">
+				<div class="top-navigation-bar">
+					<div class="wartsila-carousel-nav-tab navigation-tab active"
+						name="serviceorder" for="service-order-tabs-panel"
+						onclick="changeCarouselNavigationTab(this);"
+						id="div-serviceorder" pageUrl="ServiceOrderPageLayout.html">
+						<h1 class="no-margin no-padding">Service Order</h1>
+					</div>
+					<div class="wartsila-carousel-nav-tab navigation-tab" name="chat"
+						for="chatt-panel" onclick="changeCarouselNavigationTab(this);"
+						id="div-chatt" pageUrl="Chat.html">
+						<h1 class="no-margin no-padding">Chat</h1>
+					</div>
+					<div class="wartsila-carousel-nav-tab navigation-tab"
+						name="sitemap" for="sitemap-panel"
+						onclick="changeCarouselNavigationTab(this);"
+						id="div-site" pageUrl="Site.html">
+						<h1 class="no-margin no-padding">Site</h1>
+					</div>
+					<div class="wartsila-carousel-nav-tab navigation-tab"
+						name="spareparts" for="spareparts-panel"
+						onclick="changeCarouselNavigationTab(this);"
+						id="div-spareparts" pageUrl="SpareParts.html">
+						<h1 class="no-margin no-padding">Spare Parts</h1>
+					</div>
+					<div class="wartsila-carousel-nav-tab navigation-tab"
+						name="documents" for="documents-panel"
+						onclick="changeCarouselNavigationTab(this);"
+						id="div-documents" pageUrl="Documents.html">
+						<h1 class="no-margin no-padding">Documents</h1>
+					</div>
+					<div class="wartsila-carousel-nav-tab navigation-tab"
+						name="riskassessment" for="riskassessment-panel"
+						onclick="changeCarouselNavigationTab(this);"
+						id="div-riskassessment" pageUrl="RiskAssessment.html">
+						<h1 class="no-margin no-padding">Safety</h1>
+					</div>
+				</div>
+				<!--
+						TODO: Add cookies or similar to set the initial container. Right now it defaults to operations as it is the first
+							  active navigation tab
+					-->
+				<div id="detail-page-content-container">
+					<div id="operations-panel" class="main-content-panel">
+						<!-- Content Container -->
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="service-order-footer" class="swipeon" data-role="footer"
+			data-position="fixed" style="display: none;">
+			<div class="system-status-container">
+				<div class="status-bar">
+					<table>
+						<tr>
+							<td id="so_status_bar_main_icon" class="status-bar-td-left">
+								<img id="so_div_connection_icon" src="images/online39x32.gif"
+								data-role="button" data-inline="true" alt="Online">
+							</td>
+							<td id="so_div_soup_status_line" class="status-bar-td-center"></td>
+							<td id="so_div_soup_status_line_proc_icon"
+								class="status-bar-td-right"></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<!-- 		operation-popup -->
+
+		<div data-role="popup" id="operation-popup" class="ui-content"
+			style="background: #F4F2F1;"><!-- data-icon="delete" data-role="button" -->
+			<a href="#" data-rel="back" data-theme="a" data-iconpos="notext" class="ui-btn-right">
+				<img src="images/icons/close-button-32.png" alt="Close" />
+			</a>
+			<p id="header-description" class="weekday no-margin no-padding">
+			<p>
+			<h3 id='operation-progress-text' class='date no-margin no-padding'></h3>
+			<div id="div-input-progress" role="main" class="full-width-slider">
+			</div>
+			<p></p>
+			<div id="operation-data" class="padded-sides-container">
+				<div class="wartsila-detail-list" id="operation-data-popup-detail">
+				</div>
+			</div>
+			<p></p>
+			<h4></h4>
+			<div>
+				<p></p>
+			</div>
+			<div data-role="footer">
+				<div class="system-status-container">
+					<div id="div-footer-table-icons" class="status-bar">
+						<table>
+							<tr>
+								<td id="footer-td-icon-text" class="status-bar-td-left">
+									<a href="#" data-rel="back" data-theme="c" >
+									<button class="ui-btn ui-btn-inline wartsila-btn orange" data-corners="true" data-shadow="true" data-iconshadow="true"
+										onclick="Operations.OperationSaveData();">Save</button>
+									</a>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div data-role="popup" id="safety-popup" class="ui-content" style="background: #F4F2F1;"></div>
+
+		<div data-role="popup" id="service-order-popup" class="ui-content sharp-corners"><!-- data-icon="delete" data-role="button" -->
+			<a href="#" id="closePopup" data-rel="back"  data-theme="a" data-iconpos="notext" class="ui-btn-right">
+				<img src="images/icons/close-button-32.png" alt="Close" />
+			</a><br/>
+			<p id="work-hours-popup-date-in-week"
+				class="weekday no-margin no-padding">
+			<p>
+			<input type="text" placeholder="Enter a date here" id="work-hours-popup-date" onfocus="(this.type='date')" class="no-margin no-padding sharp-corners">
+			<div id="service-order-popup-container"	class="employee-hours-container edit"></div>
+		</div>
+		<!-- 	work-hours-approval-popup  -->
+		<div data-role="popup" id="work-hours-approval-popup" class="ui-content sharp-corners"><!-- data-icon="delete" data-role="button" -->
+			<a href="#" data-rel="back" data-theme="a" data-iconpos="notext" class="ui-btn-right">
+				<img src="images/icons/close-button-32.png" alt="Close" />
+			</a>
+			<div style="width: 2000px;"></div>
+			<div id="work-hours-approval-popup-container" class="work-hours-approval-containeredit sigPad">
+				<div class="input-section">
+					<p class="no-margin no-padding">Working hours approval</p>
+					<p>12k overhauling</p>
+					<p>ID
+						.................................................
+						10029370</p>
+					<div class="">
+						<label for="work-hours-approval-name">Customer Name</label>
+						<input type="text" id="work-hours-approval-name" name="customer_name"
+							placeholder="Insert customer name" />
+					</div>
+					<div class="">
+						<label for="work-hours-approval-email">Customer Email</label>
+						<input type="text" id="work-hours-approval-email" name="customer_name"
+							placeholder="Insert customer email" />
+					</div>
+					<div class="sig sigWrapper current" style="display: block;">
+						<div class="typed" style="display: none;"></div>
+						<canvas class="pad" height="155px" width="100%"></canvas>
+						<input class="output" type="hidden" name="output" value="" />
+					</div>
+					<div class="">
+						<label for="work-hours-approval-sign">Digital Signature</label>
+						<textarea id="work-hours-approval-sign"
+							placeholder="Insert customer signature"
+							class="work-hours-approval-sign-textarea"
+							name="work-hours-approval-sign" rows="5" cols="1"></textarea>
+					</div>
+					<button class="wartsila-btn orange ui-btn ui-btn-inline"
+						onclick="WorkHours.approvalSign();">SIGN</button>
+					<div class="float-right">
+						<button class="wartsila-btn orange ui-btn ui-btn-inline"
+							onclick="WorkHours.approvalCancel();">CANCEL</button>
+						<button id="btnWorkHoursSubmit"
+							class="wartsila-btn ui-btn ui-btn-inline ui-disabled"
+							onclick="WorkHours.approvalSubmit();">SUBMIT</button>
+					</div>
+				</div>
+				<div class="clear-both"></div>
+			</div>
+		</div>
+		<!-- 	report-lead-popup -->
+		<div data-role="popup" id="report-lead-popup" class="ui-content sharp-corners"><!-- data-icon="delete" data-role="button" -->
+			<!-- <a href="#" id="closeReportLeadPopup" data-rel="back" data-theme="a" data-iconpos="notext" class="ui-btn-right"> -->
+				<img src="images/icons/close-button-32.png" alt="Close" id="closeReportLeadPopup" class="ui-btn-right" />
+			<!-- </a>  --><br/>
+			<p class="site-popup-header">Report New Sales Potential<p>
+			<div style="width: 2000px;"></div>
+			<div id="site-popup-container">Equipment</div>
+		</div>
+
+		<div data-role="popup" id="search-popup" class="ui-content sharp-corners">
+			<div id="search-popup-input">
+				<input type="text" id="search-popup-input-box"/>
+				<img src="images/icons/cancel-gray-24.png" id="search-clear">
+			</div>
+			<div style="width: 2000px;"></div>
+			<div id="search-popup-buttons">
+				<button id="search-popup-cancel" class="wartsila-btn orange ui-btn ui-btn-inline">CANCEL</button>
+				<button id="search-popup-submit" class="wartsila-btn orange ui-btn ui-btn-inline">SEARCH</button>
+			</div>
+		</div>
+
+		<script>
+			document.getElementById("p_tag_appVersion2").innerHTML = API_VERSION;
+			$('#closeReportLeadPopup').click(function(event){
+				$("#report-lead-popup").popup("close");
+			});
+			$('#search-popup-cancel').click(function(event){
+				document.getElementById("search-popup-input-box").value = '';
+				$("#search-popup").popup("close");
+			});
+			$('#search-clear').click(function(event){
+				document.getElementById("search-popup-input-box").value = '';
+				document.getElementById("search-popup-input-box").focus();
+			});
+			function openSearch(){
+				try{
+					//document.getElementById("search-popup").style.display = "block";
+					$('#search-popup').popup('open');
+				}catch(Pokemon){
+					storeExternalError(Pokemon,"Open Search Popup Error");
+				}
+			}
+		</script>
+	</div>
+	
+	
+</body>
+</html>

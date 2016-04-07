@@ -1,0 +1,99 @@
+
+div.detail-tabs, div.tabcontent, div.detail-tabs ul, div.detail-tabs ul
+{
+	//font-weight: normal;
+	font-size: 12px;
+	font-family: HelveticaNeueLTPro-BdCn, 'Helvetica Neue', Helvetica, sans-serif;
+	padding: 10px 0px;
+	font-weight: 200;
+    text-align: center;
+    text-decoration: none;
+    letter-spacing: 0;/* 1/16px */
+}
+
+div.detail-tabs
+{
+    text-align:center;
+    width: 100%;
+    height: 80%;
+    margin: 1em auto;
+    padding:0;
+    position:relative;
+}
+
+ul.detail-tabs
+{
+    width:100%;
+    background-color:#585858;
+    padding:0;
+    list-style-position: inside;
+    margin: 0 0 20px 0;
+	text-align: center;  
+	overflow: hidden;
+}
+
+li.nonactivetab, li.activetab
+{
+    display: inline-block;
+	text-align: center;
+	font-size: 14px;
+    margin: 0;
+    height: 1.5em;
+    line-height: 1.5em;
+	width: 33.3%;
+    background-color:#585858;
+    padding:0.5em 0; 
+	float: left;
+    color: white;
+    cursor:pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: moz-none;
+    -ms-user-select: none;
+    user-select: none; 
+}
+
+li.activetab
+{
+    background-color:#EE6114;
+    cursor:default;
+}
+
+li.nonactive_tab, li.active_tab
+{
+    display: inline-block;
+    text-align: center;
+    font-size: 14px;
+    margin: 0;
+    height: 1.5em;
+    line-height: 1.5em;
+    width: 25%;
+    background-color:#585858;
+    padding:0.5em 0; 
+    float: left;
+    color: white;
+    cursor:pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: moz-none;
+    -ms-user-select: none;
+    user-select: none; 
+}
+
+li.active_tab
+{
+    background-color:#EE6114;
+    cursor:default;
+}
+
+div.tabcontent
+{
+    padding:0em;
+    position:relative;
+    z-index:3;
+    display:none;
+    margin-top:-0.0625em;
+	background: transparent;
+}

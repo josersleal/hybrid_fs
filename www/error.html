@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link href="css/ratchet.css" rel="stylesheet">
+		<title>Error</title>
+	</head>
+	<body>
+	<script>
+	function myFunction() {
+	try{
+		alert("");
+		var value="true";
+		var ico = "";
+		if(value ==="true"){
+			ico = "<img src='offline.gif' alt='offline mode' height='32' width='32'/>";
+		}
+		else{
+			ico = "<img src='online.gif' alt='offline mode' height='32' width='32'/>";
+		}
+		var ul = $(ico);
+		$("#div_connection_icon").append(ul);
+	}
+		catch(err){
+			alert("error.html method myFunction threw an error: " + err.message);
+		}
+	}
+	</script>
+	<header class="bar bar-nav">
+		<h1 class="title">Error</h1>
+	</header>
+		<div class="content">
+			<div class="content-padded">Failed to load the application.
+				<a href="#" id="link_reg_soup" data-role="button" data-inline="true" onclick="myFunction()">Reg. Soups</a>
+				<a href="#" id="x" data-role="button" data-inline="true" onclick="loadScript()">Reg. Soups</a>
+			</div>
+		</div>
+	</body>
+</html>

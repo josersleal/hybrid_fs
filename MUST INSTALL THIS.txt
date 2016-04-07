@@ -1,0 +1,14 @@
+
+	BEFORE CONTINUING WITH DEVELOPMENT
+
+	Please, open Command Window where you usually write "cordova prepare"
+
+	Write following:	cordova plugin add org.apache.cordova.inappbrowser
+
+	Hit Enter and wait few seconds
+
+	DONE
+
+
+	(This needs to be done because of URL Link Recognition in Chat Tab of mobile app)
+	(Other implementations oppened url in App, which is bad, or did not opened any url, very bad)

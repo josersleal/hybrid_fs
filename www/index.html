@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<!--
+  @Authors: Mathias Nyman: m.nyman@accenture.com; Juraj Ciljak:juraj.ciljak@accenture.com
+  @Description: Landing page for the mobile App
+-->
+<html> 
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<title>FS Mobility</title>
+
+		<!-- jQuery Mobile Styles -->
+		<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+		<link rel="stylesheet" href="css/jquery-ui.css">
+		<link rel="stylesheet" href="css/jquery-ui-slider-pips.css" />
+
+		<!-- FS Mobility Styles -->
+		<link rel="stylesheet" href="css/FSMobility.css" />
+
+		<!-- jQuery Libraries -->
+		<script src="js/library/jquery-1.11.2.min.js"></script>
+		<script src="js/library/jquery.mobile-1.4.4.min.js"></script>
+		<script src="js/library/jquery-ui.js"></script>
+		<script src="js/library/jquery.touch.min.js"></script>
+		<script src="js/library/jquery.signature.js"></script>
+		<script src="js/library/jquery-ui-slider-pips.js"></script>
+
+		<!-- Include Cordova -->
+		<script src="js/library/cordova-2.3.0.js"></script>
+		<script src="cordova.js"></script>
+
+		<!-- System Scripts -->
+		<script src="js/app/Constants.js"></script>
+		<script src="js/app/ObjectsManager.js"></script>
+
+		<!-- include forcetk.mobilesdk for REST transaction support -->
+		<script src="js/library/forcetk.mobilesdk.js"></script>
+		<script src="js/app/MessagePage.js"></script>
+		<script src="js/app/JobQueue.js"></script> <!-- Object for handling ongoing asynch jobs -->
+		<script src="js/app/UserController.js"></script> <!-- Object for User Controller -->
+		<script src="js/app/TableIndex.js"></script> <!-- Object for define Table indexes of SmartStore database -->
+		<script src="js/app/Database.js"></script>
+		<script src="js/app/SessionManager.js"></script>
+		<script src="js/app/EventHandlers.js"></script>
+
+		<!-- Other scripts -->
+		<script src="js/app/FileManager.js"></script>
+		<script src="js/app/NavigationManager.js"></script>
+		<script src="js/app/SmartStoreManager.js"></script> <!-- Object for SmartStore Management-->
+		<script src="js/app/SmartSyncManager.js"></script> <!-- Object for SmartSync Management-->
+		<script src="js/app/SmartStore.js"></script> <!-- Object for SmartStore table-->
+		<script src="js/app/DataManager.js"></script>
+		<script src="js/app/ErrorHandler.js"></script>
+		<script src="js/app/DateTimeObject.js"></script> <!-- Object for DateTime formating -->
+		<script src="js/app/DataTransformManager.js"></script>  <!-- Object for transformation data -->
+		<script src="js/app/MethodManager.js"></script>
+		<script src="js/app/Batch.js"></script>
+
+		<!-- Controller Classes -->
+		<script src="js/app/ServiceOrderController.js"></script>
+		<script src="js/app/ChatterController.js"></script>		 <!-- Object for Chatter Tab-->
+		<script src="js/app/WorkHoursController.js"></script>  <!-- Object for WorkHours Tab -->
+		<script src="js/app/WorkSafetyController.js"></script>
+		<script src="js/app/SiteSafetyController.js"></script>
+		<script src="js/app/IncidentController.js"></script>
+		<script src="js/app/SWRController.js"></script>  <!-- Object for SWR Tab -->
+		<script src="js/app/TKICController.js"></script>  <!-- Object for WorkHours Tab -->
+		<script src="js/app/SparePartsController.js"></script>  <!-- Spare Parts Page controller -->
+		<script src="js/app/OperationsController.js"></script>  <!-- Operations Page controller -->
+		<script src="js/app/SiteMapController.js"></script>
+		<script>
+			// The version of the REST API you wish to use in your app.
+			var apiVersion = "v31.0";
+			var debugMode = true; 
+			var userData = jQuery.extend(true, {}, USER_DATA);
+			if((FileManager===null) || (FileManager===undefined))
+			{
+				FileManager = new FileManager(); // Object for File Manager
+			};
+			var MainObject = new mainObject(); // Main Object
+			MainObject.Initialization(); //initialization object
+
+			
+		</script>
+	</head>
+	<body>
+		<div data-role="page" data-theme="a" id="landing" >
+			<div id="side-menu" class="wartsila-side-menu" data-role="panel" data-position="left" data-display="overlay" data-theme="a">
+
+				<div class="section-block">
+					<a href="#" onclick="hideSideMenu();downloadData();" class="icon next-tool">Synchronize</a>
+				</div>
+
+				<div class="section-block">
+					<a href="#" id="debugConsole" onclick="sfSmartstore().showInspector();$('.console-section').toggle();" 
+					class="icon settings" style="display:none;">Debug Console</a>
+
+					<a href="#" onclick="hideSideMenu();LOG.deleteLogs();" class="icon settings" id="debugLogs" style="display:none;">Delete Error Logs</a>
+
+					<a href="#" onclick="hideSideMenu();dummyError();" class="icon settings" id="dummyError" style="display:none;">Create Dummy Error</a>
+
+					<a href="#" onclick="hideSideMenu();externalError();" class="icon settings" id="externalError" style="display:none;">Create External Error</a>
+				</div>
+
+				<div class="section-block">
+					<a href="#" onclick="DataManager.LogOut()" class="icon logout">Logout</a>
+				</div>
+			</div>
+			<script>
+			function downloadData(){
+				//var go = confirm("Are you sure? You will loose all unsaved data!");
+				//if (go == true)
+					SmartSyncManager.startPushSfdcData();
+					//JobQueues.FetchDataFromSFDC();
+			}
+
+			function hideSideMenu(){
+				$("#hamburger").click();//workaround
+			}
+
+			function dummyError(){
+				try{
+					something.happens();
+				}catch(Pokemon){
+					LOG.handle(Pokemon,"Something went wrong",{"myVariable":"47"});
+				}
+			}
+
+			function externalError(){
+				try{
+					something.happens();
+				}catch(Pokemon){
+					storeExternalError(Pokemon,"Sample External Error");
+				}
+			}
+
+			</script>
+			<div class="header-container" data-role="header" data-position="fixed">            
+				<div class="main-section align-left">
+					<div class="header-section">
+						<a href="#side-menu" id="hamburger">
+							<img class="navmenu-icon" src="images/menu-17.png" alt="menu">
+						</a>
+					</div>
+					<div class="header-section">
+						<p class="user-name no-margin no-padding" id="p_tag_userName"></p>
+					</div>
+				</div>
+
+				<div class="align-right">
+					<div class="header-section">
+						<div class="header-logo-container">
+							<small id="p_tag_appVersion" style="vertical-align: bottom;"></small>
+							<img src="images/wartsila_logo.png" onclick="Users.becomeDeveloper();" alt="Wartsila">
+						</div>
+					</div>
+				</div>
+				<div style="clear:both;"></div>
+			</div>
+
+			<div class="main-content-container" data-role="main">
+				<div id="#content" data-role="content">
+					<h1 class="wartsila-section-header">Service Orders</h1>
+					<!-- Div rendered for Service Order -->
+					<div id="div-soup-service-orders" class="section-block" >
+						<ul class="wartsila-ul">
+						</ul>
+					</div>
+
+					<div class="section-block console-section" style="display:none;">
+						<h3>console:</h3>
+						<p id="console" class="logWindow">
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div id="index-footer" data-role="footer" data-position="fixed" style="display:none;">
+				<div class="system-status-container">
+					<div class="status-bar">
+						<table> 
+							<tr>
+								<td id="status_bar_main_icon" class="status-bar-td-left">
+									<img id="div_connection_icon" src="images/online39x32.gif" data-role="button" data-inline="true" alt="Online">
+								</td>
+								<td id="div_soup_status_line" class="status-bar-td-center"></td>
+								<td id="div_soup_status_line_proc_icon" class="status-bar-td-right"></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- initialization of the file system-->
+		<script>
+			function gotFS(fileSystem)
+			{
+				FileManager.gotjFS = fileSystem;
+			}
+			document.getElementById("p_tag_appVersion").innerHTML = API_VERSION;
+		</script>
+	</body>
+</html>

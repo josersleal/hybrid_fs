@@ -1,0 +1,18 @@
+Chatter:
+-Post feed -> upload -> comment on that feed -> not allowed! (App should download data from SFDC after upload). This needs access to another object etc.
+-Attachments do not show on feed comments. (Thats why you also can't take pictures in feed comments at the moment)
+-Post feed -> write comment -> send -> Upload changes -> Post feed -> write comment -> send button and camerabutton do not work!
+
+Safety:
+If a near miss or injury incident is added, the count in the work safety does not update
+Site safety slider does not fire the changed event if the label is pressed.
+
+ToDo:
+Have pictures added from gallery.
+Clean and optimize code
+Write good comments
+Update Technical Documentation
+
+Q1 ToDos:
+Sorting TKICs according to Subtype - In Progress
+Searching SWR/TKIC by Name, ability to sort them ASC/DESC

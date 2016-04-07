@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<link rel="stylesheet" href="css/FSMobility.css" />
+		<title>Risk Assessment</title>
+		<script>
+			$(document).ready(function(){
+
+					function showActive()
+					{
+						try {
+							var divId = $( "#service-order-subnav .active" ).attr( "for" );
+							var pageUrl = $( "#service-order-subnav .active" ).attr( "pageUrl" );
+
+							$(".tabcontent").hide();
+							$("#" + divId).show();
+							changeNavigationTab(pageUrl);
+						}
+						catch(err) {
+							alert("RiskAssessment.html method showActive threw an error: " + err.message);
+						}
+					}
+
+					$( "#service-order-subnav .sub-navigation-tab" ).click(function(){
+						$( "#service-order-subnav .sub-navigation-tab" ).removeClass( "active" );
+						$( this ).addClass( "active" );
+						showActive();
+					});
+
+					showActive();
+
+			});
+		</script>
+	</head>
+	<body>
+		<div data-role="content">
+			<div><!-- TODO: Replace border/cellpadding/cellspacing with CSS -->
+				<table id="service-order-subnav" class="sub-navigation-bar detail-tabs" border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td class="sub-navigation-tab active" for="site-safety-panel" pageUrl="site-safety.html">
+							<p class="no-margin no-padding">Site safety</p>
+						</td>
+						<td class="sub-navigation-tab" for="work-safety-panel" pageUrl="work-safety.html">
+							<p class="no-margin no-padding">Work safety</p>
+						</td>
+						<td class="sub-navigation-tab" for="incident-panel" pageUrl="incident.html">
+							<p class="no-margin no-padding">Incident</p>
+						</td>
+					</tr>
+				</table>
+				<div class="tabcontent" id="site-safety-panel" >
+					<p>Site-safety-panel</p>
+				</div>
+				<div class="tabcontent" id="work-safety-panel" >
+					<p>Work safety-panel</p>
+				</div>
+				<div class="tabcontent" id="incident-panel" >
+					<p>Incident-panel</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!--
+  @Authors: Mathias Nyman: m.nyman@accenture.com; Juraj Ciljak:juraj.ciljak@accenture.com
+  @Description: Documents page for the mobile App
+-->
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<title>Documents</title>
+		<script>
+			$(document).ready(function(){
+
+				function showActiveDoc()
+				{
+					try {
+						var divId = $( "#service-order-subnav .active" ).attr( "for" );
+						var pageUrl = $( "#service-order-subnav .active" ).attr( "pageUrl" );
+
+						$(".tabcontent").hide();
+						$("#" + divId).show();
+						changeNavigationTab(pageUrl);
+					}
+					catch(err)
+					{
+						alert("Documents.html method showActiveDoc threw an error: " + err.message);
+					}
+				}
+
+				$( "#service-order-subnav .sub-navigation-tab" ).click(function(){
+					$( "#service-order-subnav .sub-navigation-tab" ).removeClass( "active" );
+					$( this ).addClass( "active" );
+					showActiveDoc();
+				}); 
+
+				showActiveDoc();
+			});
+		</script>
+	</head>
+	<body>
+		<div data-role="content">
+			<table id="service-order-subnav" class="sub-navigation-bar detail-tabs">
+				<tr>
+					<td class="sub-navigation-tab active" for="swr-panel" pageUrl="Swr.html">
+						<p class="no-margin no-padding">SWR</p>
+					</td>
+					<td class="sub-navigation-tab" for="bulletins-panel" pageUrl="Bulletins.html">
+						<p class="no-margin no-padding">Bulletins</p>
+					</td>
+					<td class="sub-navigation-tab" for="manuals-panel" pageUrl="Manuals.html">
+						<p class="no-margin no-padding">Manuals</p>
+					</td>
+					<td class="sub-navigation-tab" for="spc-panel" pageUrl="Spc.html">
+						<p class="no-margin no-padding">SPC</p>
+					</td>
+				</tr>
+			</table>
+			<div class="tabcontent" id="swr-panel" >
+			   <div id="swr-docs" class="main-content-panel"></div>
+			</div>
+			<div class="tabcontent" id="bulletins-panel">
+				<div id="bulletins-docs" class="main-content-panel"></div>
+			</div>
+			<div class="tabcontent" id="manuals-panel">
+				<div id="manuals-docs" class="main-content-panel"></div>
+				<div id="documents-panel" class="main-content-panel"></div>
+			</div>
+			<div class="tabcontent" id="spc-panel">
+				<div id="spc-docs" class="main-content-panel"></div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,15 @@
+{
+    "remoteAccessConsumerKey": "3MVG9WtWSKUDG.x6h785NYjmYRDbnMEvommsRo18tN4cQ2pqxwO3FfNrL5p3OQSWUYLAzxIkXE3b6TznWG_R0",
+    "oauthRedirectURI": "testsfdc:///mobilesdk/detect/oauth/done",
+    "oauthScopes": ["api"],
+    "isLocal": true,
+    "startPage": "index.html",
+    "errorPage": "error.html",
+    "shouldAuthenticate": true,
+    "attemptOfflineLoad": false,
+    "androidPushNotificationClientId": "",/*896276992733*/
+    "DEV":"3MVG9ahGHqp.k2_xjxuVNNJ6YToi7H9pQnC_XDGTZ4iENudSGzMpk3kldrC5CoiXBD2NorrM2lKX4DYCM.OXl",
+    "TEST":"3MVG9GiqKapCZBwFRWrQr3t4OBOdix3YMLDu15Ufrw2gyTOTDUqwZ.yjWOZ5TrQKcl.wBs2hg2OLc_v1Ieq2j",
+    "PROD": "3MVG9WtWSKUDG.x6h785NYjmYRDbnMEvommsRo18tN4cQ2pqxwO3FfNrL5p3OQSWUYLAzxIkXE3b6TznWG_R0",
+    "DEV2": "3MVG98RqVesxRgQ7lvFX99kDjRA9Nm0R5ZpqrvNlYFZrr7LdsiXj0zktE1Ox6vqCSjaT2SxxP3Jp0v1SH3zWd"
+}
